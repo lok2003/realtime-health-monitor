@@ -17,12 +17,13 @@ jobs:
         
       - name: build package
         run: mvn clean package
-      
+        #coverage at 27
       - name: Sonar cloud
         run: |
           mvn sonar:sonar \
             -Dsonar.projectKey=${{ vars.PROJECT_NAME }} \
             -Dsonar.organization=${{ vars.ORG_NAME }} \
             -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.coverage.jacoco.xmlReportsPath=target/site/jacoco/jacoco.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_REAL_TIME }}
