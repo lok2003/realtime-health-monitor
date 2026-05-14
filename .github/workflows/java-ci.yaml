@@ -9,4 +9,11 @@ jobs:
     steps:
       - name: checkout code 
         uses: actions/checkout@v4
-      
+      - name: setup java
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: "temurin"
+        
+      - name: build package
+        run: npm clean package
