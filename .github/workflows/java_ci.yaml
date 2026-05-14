@@ -16,4 +16,4 @@ jobs:
           distribution: "temurin"
         
       - name: build package
-        run: npm clean package
+        run: mvn clean package
