@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Realtime Health Monitor</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            background-color: #111827;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .card {
+            width: 400px;
+            margin: auto;
+            background: #1f2937;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #22c55e;
+        }
+
+        .metric {
+            font-size: 24px;
+            margin: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>🚀 Realtime Health Monitor</h1>
+
+    <div class="metric">
+        CPU Usage:
+        <span id="cpu">Loading...</span> %
+    </div>
+
+    <div class="metric">
+        Available Memory:
+        <span id="memory">Loading...</span> MB
+    </div>
+
+    <div class="metric">
+        Status:
+        <span id="status">Loading...</span>
+    </div>
+
+</div>
+
+<script>
+
+async function fetchStats() {
+
+    const response =
+        await fetch('/api/realtime-stats');
+
+    const data =
+        await response.json();
+
+    document.getElementById('cpu').innerText =
+        data.cpu_usage_percent;
+
+    document.getElementById('memory').innerText =
+        data.available_memory_mb;
+
+    document.getElementById('status').innerText =
+        data.status;
+}
+
+fetchStats();
+
+setInterval(fetchStats, 3000);
+
+</script>
+
+</body>
+</html>
