@@ -30,3 +30,9 @@ jobs:
             -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_REAL_TIME }}
+
+      - name: Create a Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-time
+          path: "./target/*.jar"
